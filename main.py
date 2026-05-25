@@ -10,7 +10,7 @@ def gra():
         y = int(input("Podaj pozycję startową y:"))
         energia = int(input("Podaj ilość energii:"))
 
-    except:
+    except ValueError:
         print ("Błąd danych. Ustawiono wartości domyślnie")
         x=0
         y=0
@@ -22,7 +22,7 @@ def gra():
     try:
         cel_x = int(input("Podaj cel wyprawy x:"))
         cel_y = int(input("Podaj cel wyprawy y:"))
-    except:
+    except ValueError:
         print("Błąd celu. Ustawiono cel domyślny: 5, 5")
         cel_x = 5
         cel_y = 5
@@ -39,7 +39,7 @@ def gra():
     print("Energia startowa: ", energia)
     print("Granice świata: od -10 do 10 na osi X i Y")
     print("Warunek zakończenia: dotarcie do celu, brak energii albo limit kroków")
-    print("Sterowanie: N - na góre,S - na dół, E - w prawo,W - w lewo")
+    print("Sterowanie: N - na górę,S - w dół, E - w prawo,W - w lewo")
     print()
 
     while energia > 0 and krok < max_krokow:
@@ -103,7 +103,8 @@ def gra():
         if x < -10 or x > 10 or y < -10 or y > 10:
             x = stare_x
             y = stare_y
-            opis += " Po zdarzeniu statek wyszedł poza mapę, więc wrócił na poprzednią pozycję."
+            energia -= 3
+            opis += " Po zdarzeniu statek wyszedł poza mapę, więc wrócił na poprzednią pozycję i stracił 3 energii."
 
         historia.append(opis)
 
